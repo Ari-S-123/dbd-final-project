@@ -1,0 +1,8 @@
+.App {
+  text-align: center;
+}
+
+.LogoContainer {
+  margin: auto;
+  flex-direction: column;
+}
