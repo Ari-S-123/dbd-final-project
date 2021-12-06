@@ -14,7 +14,7 @@ function App() {
                 height="20"
                 className="d-inline-block align-top"
             />{' '}
-            DBD Final Project
+            Database Design Final Project
           </Navbar.Brand>
         </Container>
       </Navbar>
