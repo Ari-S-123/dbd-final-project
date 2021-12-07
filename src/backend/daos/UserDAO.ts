@@ -11,7 +11,7 @@ import {
   username
 } from "../database-settings";
 
-export class UserDAO {
+class UserDAO {
 
   createUser = (user: User) => {
     createConnection({
@@ -114,3 +114,5 @@ export class UserDAO {
     }).catch(error => console.log(error));
   }
 }
+
+export {UserDAO as default}
