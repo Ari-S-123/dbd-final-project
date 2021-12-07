@@ -31,9 +31,9 @@ export class TeamDAO {
     }).catch(error => console.log(error));
   }
 
-  findAllTeams = (): FantasyTeam[] => {
+  findAllTeams = async (): Promise<FantasyTeam[]> => {
     let allTeams: FantasyTeam[] = [];
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,
@@ -51,7 +51,7 @@ export class TeamDAO {
     return allTeams;
   }
 
-  findTeamById = (id: number): FantasyTeam | undefined => {
+  findTeamById = async (id: number): Promise<FantasyTeam | undefined> => {
     let team: FantasyTeam | undefined;
     createConnection({
       type: "mysql",

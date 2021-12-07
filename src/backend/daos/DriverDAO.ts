@@ -31,9 +31,9 @@ export class DriverDAO {
     }).catch(error => console.log(error));
   }
 
-  findAllDrivers = (): Driver[] => {
+  findAllDrivers = async (): Promise<Driver[]> => {
     let allDrivers: Driver[] = [];
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,
@@ -51,9 +51,9 @@ export class DriverDAO {
     return allDrivers;
   }
 
-  findDriverById = (id: number): Driver | undefined => {
+  findDriverById = async (id: number): Promise<Driver | undefined> => {
     let driver: Driver | undefined;
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,

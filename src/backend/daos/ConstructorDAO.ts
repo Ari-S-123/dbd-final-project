@@ -31,9 +31,9 @@ export class ConstructorDAO {
     }).catch(error => console.log(error));
   }
 
-  findAllConstructors = (): Constructor[] => {
+  findAllConstructors = async (): Promise<Constructor[]> => {
     let allConstructors: Constructor[] = [];
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,
@@ -51,9 +51,9 @@ export class ConstructorDAO {
     return allConstructors;
   }
 
-  findConstructorById = (id: number): Constructor | undefined => {
+  findConstructorById = async (id: number): Promise<Constructor | undefined> => {
     let constructor: Constructor | undefined;
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,

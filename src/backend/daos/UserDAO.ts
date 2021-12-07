@@ -31,9 +31,9 @@ export class UserDAO {
     }).catch(error => console.log(error));
   }
 
-  findAllUsers = (): User[] => {
+  findAllUsers = async (): Promise<User[]> => {
     let allUsers: User[] = [];
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,
@@ -51,9 +51,9 @@ export class UserDAO {
     return allUsers;
   }
 
-  findUserById = (id: number): User | undefined => {
+  findUserById = async (id: number): Promise<User | undefined> => {
     let user: User | undefined;
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,
