@@ -89,7 +89,7 @@ export class DriverDAO {
       driver!.name = driverUpdate.name;
       driver!.nationality = driverUpdate.nationality;
       driver!.value = driverUpdate.value;
-      driver!.constructorId = driverUpdate.constructorId;
+      driver!.constructor_id = driverUpdate.constructor_id;
       await driverRepository.save(driver!);
       await connection.close();
     }).catch(error => console.log(error));

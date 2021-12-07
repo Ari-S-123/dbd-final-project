@@ -13,8 +13,8 @@ export class FantasyTeam {
   budget!: number;
 
   @Column({type: "int"})
-  userId!: number;
+  user!: number;
 
-  @Column({type: "int"})
-  constructorId!: number;
+  @Column({type: "int", name: "constructor"})
+  constructer!: number;
 }

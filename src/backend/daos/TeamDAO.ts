@@ -88,8 +88,8 @@ export class TeamDAO {
       team!.id = teamUpdate.id;
       team!.name = teamUpdate.name;
       team!.budget = teamUpdate.budget;
-      team!.userId = teamUpdate.userId;
-      team!.constructorId = teamUpdate.constructorId;
+      team!.user = teamUpdate.user;
+      team!.constructer = teamUpdate.constructer;
       await teamRepository.save(team!);
       await connection.close();
     }).catch(error => console.log(error));

@@ -16,5 +16,5 @@ export class Driver {
   value!: number;
 
   @Column({type: "int"})
-  constructorId!: number;
+  constructor_id!: number;
 }
