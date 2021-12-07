@@ -1,20 +1,20 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity()
+@Entity({name: "fantasy_teams"})
 export class FantasyTeam {
 
   @PrimaryGeneratedColumn({type: "int"})
-  id: number;
+  id!: number;
 
   @Column({type: "varchar"})
-  name: string;
+  name!: string;
 
   @Column({type: "int"})
-  budget: number;
+  budget!: number;
 
   @Column({type: "int"})
-  userId: number;
+  userId!: number;
 
   @Column({type: "int"})
-  constructorId: number;
+  constructorId!: number;
 }

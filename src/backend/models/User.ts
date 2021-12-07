@@ -1,26 +1,23 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity()
+@Entity({name: "users"})
 export class User {
 
   @PrimaryGeneratedColumn({type: "int"})
-  id: number;
+  id!: number;
 
   @Column({type: "varchar"})
-  firstName: string;
+  firstName!: string;
 
   @Column({type: "varchar"})
-  lastName: string;
+  lastName!: string;
 
   @Column({type: "varchar"})
-  username: string;
+  username!: string;
 
   @Column({type: "varchar"})
-  password: string;
-
-  @Column({type: "varchar"})
-  email: string;
+  email!: string;
 
   @Column({type: "date"})
-  dateOfBirth: Date;
+  dateOfBirth!: Date;
 }

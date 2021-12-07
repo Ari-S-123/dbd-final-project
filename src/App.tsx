@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './App.module.css';
 import {Container, Navbar} from "react-bootstrap";
+import "reflect-metadata";
 
 function App() {
   return (

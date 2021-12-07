@@ -4,11 +4,11 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 export class FantasySeatMap {
 
   @PrimaryGeneratedColumn({type: "int"})
-  id: number;
+  id!: number;
 
   @Column({type: "int"})
-  driverId: number;
+  driverId!: number;
 
   @Column({type: "int"})
-  fantasyTeamId: number;
+  fantasyTeamId!: number;
 }
