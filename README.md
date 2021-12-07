@@ -1,4 +1,4 @@
-# How to Run the App.
+# How to run the app:-
 
 1. Install Node.js LTS.
 
