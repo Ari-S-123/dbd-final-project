@@ -1,26 +1,30 @@
-import axios from "axios";
-import {User} from "../../backend/models/User";
-import {useQuery} from "react-query";
+import {useState} from "react";
 
-// TODO: FIX
 export const UserList: React.FC = () => {
 
-  const usersPromise = async () => {
-    return axios.get<User[]>("http://localhost:4000/findAllUsers");
-  };
+  const [users, setUsers] = useState([]);
 
-  const useAllUsers = () => {
-    return useQuery<User[], Error>('users', async () => {
-      const {data} = await usersPromise();
-      return data;
-    });
-  };
-
-  const {isLoading, isError, data, error} = useAllUsers();
-
-  const users: User[] | undefined = data;
+  const usersPromise = fetch('/findAllUsers')
+  .then((response) => response.json())
+  .then((users) => {
+    setUsers(users);
+  });
 
   return (
-      <>{users}</>
+      <div>
+        <h2>Users</h2>
+        <ul className="list-group">
+          {
+            users.map(user =>
+                <li className="list-group-item"
+                    // @ts-ignore
+                    key={user.id}>
+                  {// @ts-ignore
+                    user.firstName + " " + user.lastName}
+                </li>)
+          }
+        </ul>
+      </div>
   );
+
 }
