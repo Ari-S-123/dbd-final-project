@@ -14,6 +14,7 @@ export const UserList: React.FC = () => {
   return (
       <div>
         <h2>Users</h2>
+        <a className="btn btn-primary" href="/userEditor/new">Add New User</a>
         <ul className="list-group">
           {
             users.map(user =>

@@ -3,6 +3,7 @@ import {TeamDAO} from "./daos/TeamDAO";
 import {DriverDAO} from "./daos/DriverDAO";
 import {ConstructorDAO} from "./daos/ConstructorDAO";
 import {User} from "./models/User";
+import {Constructor} from "./models/Constructor";
 
 
 const express = require('express')
@@ -48,6 +49,40 @@ app.get('/updateUser/:id/:firstName/:lastName/:username/:email/:dateOfBirth', as
 app.get('/deleteUser/:id', async (req: any, res: any) => {
   const {id} = req.params;
   new UserDAO().deleteUser(id);
+  res.send()
+})
+
+app.post('/findConstructorById', bodyParser.text(), async (req: any, res: any) => {
+  const id: number = Number(req.body)
+  const constructor = await new ConstructorDAO().findConstructorById(id);
+  res.send(constructor)
+})
+
+app.get('/createConstructor/:name/:color/:nationality/:value', async (req: any, res: any) => {
+  const {name, color, nationality, value} = req.params;
+  const constructor = new Constructor();
+  constructor.name = name;
+  constructor.color = color;
+  constructor.nationality = nationality;
+  constructor.value = value;
+  new ConstructorDAO().createConstructor(constructor);
+  res.send();
+})
+
+app.get('/updateConstructor/:id/:name/:color/:nationality/:value/', async (req: any, res: any) => {
+  const {id, name, color, nationality, value} = req.params;
+  const constructor = new Constructor();
+  constructor.name = name;
+  constructor.color = color;
+  constructor.nationality = nationality;
+  constructor.value = value;
+  new ConstructorDAO().updateConstructor(id, constructor);
+  res.send();
+})
+
+app.get('/deleteConstructor/:id', async (req: any, res: any) => {
+  const {id} = req.params;
+  new ConstructorDAO().deleteConstructor(id);
   res.send()
 })
 

@@ -8,6 +8,7 @@ import {TeamList} from "./components/team/team-list";
 import {DriverList} from "./components/driver/driver-list";
 import {ConstructorList} from "./components/constructor/constructor-list";
 import {UserEditor} from "./components/user/user-edit";
+import {ConstructorEditor} from "./components/constructor/constructor-edit";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/teamList" element={<TeamList/>}/>
               <Route path="/driverList" element={<DriverList/>}/>
               <Route path="/constructorList" element={<ConstructorList/>}/>
+              <Route path="/constructorEditor/:id" element={<ConstructorEditor/>}/>
             </Routes>
 
           </div>
