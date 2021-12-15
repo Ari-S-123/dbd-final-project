@@ -48,7 +48,7 @@ export const DriverEditor: React.FC = () => {
       findSeatsByDriverId(id);
       findSeatByBothIds(seatEdit.fantasyTeamId, id);
     }
-  });
+  }, []);
 
   const createDriver = (driver: any) => {
     fetch(`/createDriver/${driver.name}/${driver.nationality}/${driver.value}/${driver.constructor_id}`)

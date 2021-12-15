@@ -47,7 +47,7 @@ export const TeamEditor: React.FC = () => {
       findSeatsByTeamId(id);
       findSeatByBothIds(id, seatEdit.driverId);
     }
-  });
+  }, []);
 
   const createTeam = (team: any) => {
     fetch(`/createTeam/${team.name}/${team.budget}/${team.user}/${team.constructer}`)

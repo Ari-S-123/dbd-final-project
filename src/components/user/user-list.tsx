@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import styles from './user-list.module.css';
 
 export const UserList: React.FC = () => {
 
@@ -12,9 +13,11 @@ export const UserList: React.FC = () => {
   });
 
   return (
-      <div>
+      <div className={styles.userList}>
         <h2>Users</h2>
-        <a className="btn btn-primary" href="/userEditor/new">Add New User</a>
+        <div className={styles.newButton}>
+          <a className="btn btn-primary" href="/userEditor/new">Add New User</a>
+        </div>
         <ul className="list-group">
           {
             users.map(user =>

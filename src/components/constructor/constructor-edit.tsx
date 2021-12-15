@@ -26,7 +26,7 @@ export const ConstructorEditor: React.FC = () => {
     if (id !== "new") {
       findConstructorById(id);
     }
-  });
+  }, []);
 
   const createConstructor = (constructor: any) => {
     fetch(`/createConstructor/${constructor.name}/${constructor.color}/${constructor.nationality}/${constructor.value}`)

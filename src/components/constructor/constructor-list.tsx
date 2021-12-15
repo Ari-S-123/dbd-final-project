@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import styles from './constructor-list.module.css';
 
 export const ConstructorList: React.FC = () => {
 
@@ -12,9 +13,11 @@ export const ConstructorList: React.FC = () => {
   });
 
   return (
-      <div>
+      <div className={styles.constructorList}>
         <h2>Constructors</h2>
-        <a className="btn btn-primary" href="/constructorEditor/new">Add New Constructor</a>
+        <div className={styles.newButton}>
+          <a className="btn btn-primary" href="/constructorEditor/new">Add New Constructor</a>
+        </div>
         <ul className="list-group">
           {
             constructors.map(constructor =>

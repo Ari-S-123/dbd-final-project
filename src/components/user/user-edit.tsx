@@ -27,7 +27,7 @@ export const UserEditor: React.FC = () => {
     if (id !== "new") {
       findUserById(id);
     }
-  });
+  }, []);
 
   const createUser = (user: any) => {
     fetch(`/createUser/${user.firstName}/${user.lastName}/${user.username}/${user.email}/${user.dateOfBirth}`)

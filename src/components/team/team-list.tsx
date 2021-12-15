@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import styles from './team-list.module.css';
 
 export const TeamList: React.FC = () => {
 
@@ -12,9 +13,12 @@ export const TeamList: React.FC = () => {
   });
 
   return (
-      <div>
+      <div className={styles.teamList}>
         <h2>Teams</h2>
-        <a className="btn btn-primary" href="/teamEditor/new">Add New Team</a>
+        <div className={styles.newButton}>
+          <a className="btn btn-primary" href="/teamEditor/new">Add New Team</a>
+        </div>
+
         <ul className="list-group">
           {
             teams.map(team =>
