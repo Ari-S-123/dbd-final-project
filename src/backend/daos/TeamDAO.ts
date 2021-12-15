@@ -71,6 +71,26 @@ export class TeamDAO {
     return team;
   }
 
+  findTeamsByUserId = async (id: number): Promise<FantasyTeam[] | undefined> => {
+    let teams: FantasyTeam[] = [];
+    await createConnection({
+      type: "mysql",
+      host: host,
+      port: port,
+      database: database_name,
+      username: username,
+      password: password,
+      logging: logging,
+      synchronize: synchronize,
+      entities: entities
+    }).then(async connection => {
+      const teamRepository = connection.getRepository(FantasyTeam);
+      teams = await teamRepository.find({user: id});
+      await connection.close();
+    }).catch(error => console.log(error));
+    return teams;
+  }
+
   updateTeam = (id: number, teamUpdate: FantasyTeam) => {
     createConnection({
       type: "mysql",

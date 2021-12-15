@@ -1,9 +1,17 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 export const UserEditor: React.FC = () => {
   const {id} = useParams()
   const [user, setUser] = useState({})
+
+  const [teams, setTeams] = useState([]);
+
+  const teamsPromise = fetch('/findTeamsByUserId/' + id)
+  .then((response) => response.json())
+  .then((teams) => {
+    setTeams(teams);
+  });
 
 
   const findUserById = (id: string | undefined) =>
@@ -87,6 +95,22 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.dateOfBirth}/>
+        <label>Teams:-</label>
+        <ul className="list-group">
+          {
+            teams.map(team =>
+                <li className="list-group-item"
+                    // @ts-ignore
+                    key={team.id}>
+                  <Link to={
+                    // @ts-ignore
+                    `/teamEditor/${team.id}`}>
+                    {// @ts-ignore
+                      team.name}
+                  </Link>
+                </li>)
+          }
+        </ul>
         <br/>
         <button className="btn btn-warning" onClick={() => {
           // eslint-disable-next-line no-restricted-globals

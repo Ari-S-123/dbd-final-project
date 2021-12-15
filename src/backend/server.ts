@@ -128,6 +128,12 @@ app.post('/findTeamById', bodyParser.text(), async (req: any, res: any) => {
   res.send(team)
 })
 
+app.get('/findTeamsByUserId/:userId', async (req: any, res: any) => {
+  const {userId} = req.params;
+  const teams = await new TeamDAO().findTeamsByUserId(userId);
+  res.send(teams)
+})
+
 app.get('/createTeam/:name/:budget/:user/:constructer', async (req: any, res: any) => {
   const {name, budget, user, constructer} = req.params;
   const team = new FantasyTeam();
