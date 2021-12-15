@@ -7,6 +7,7 @@ import {Constructor} from "./models/Constructor";
 import {Driver} from "./models/Driver";
 import {FantasyTeam} from "./models/FantasyTeam";
 import {SeatMapDAO} from "./daos/SeatMapDAO";
+import {FantasySeatMap} from "./models/FantasySeatMap";
 
 
 const express = require('express')
@@ -194,6 +195,27 @@ app.get('/findSeatsByTeamId/:id', async (req: any, res: any) => {
   const {id} = req.params;
   const seats = await new SeatMapDAO().findSeatsByTeamId(id);
   res.send(seats)
+})
+
+app.get('/findSeatByBothIds/:team_id/:driver_id', async (req: any, res: any) => {
+  const {team_id, driver_id} = req.params;
+  const seat = await new SeatMapDAO().findSeatByBothIds(team_id, driver_id);
+  res.send(seat)
+})
+
+app.get('/createSeat/:driverId/:fantasyTeamId', async (req: any, res: any) => {
+  const {driverId, fantasyTeamId} = req.params;
+  const seatMap = new FantasySeatMap();
+  seatMap.driverId = driverId;
+  seatMap.fantasyTeamId = fantasyTeamId;
+  new SeatMapDAO().createSeatMap(seatMap);
+  res.send();
+})
+
+app.get('/deleteSeat/:id', async (req: any, res: any) => {
+  const {id} = req.params;
+  new SeatMapDAO().deleteSeatMap(id);
+  res.send()
 })
 
 app.listen(port, () => {

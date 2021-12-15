@@ -5,6 +5,11 @@ export const DriverEditor: React.FC = () => {
   const {id} = useParams()
   const [driver, setDriver] = useState({})
   const [seats, setSeats] = useState([])
+  const [seatEdit, setSeatEdit] = useState({
+    fantasyTeamId: '',
+    driverId: id
+  })
+  const [tempSeat, setTempSeat] = useState({})
 
   const findDriverById = (id: string | undefined) =>
       fetch(`/findDriverById`, {
@@ -21,12 +26,29 @@ export const DriverEditor: React.FC = () => {
     .then(seats => setSeats(seats))
   }
 
+  const findSeatByBothIds = (team_id: string | undefined, driver_id: string | undefined) => {
+    fetch(`/findSeatByBothIds/${team_id}/${driver_id}`)
+    .then(response => response.json())
+    .then(seat => setTempSeat(seat))
+  }
+
+  const createSeat = (seatEdit: any) => {
+    fetch(`/createSeat/${seatEdit.driverId}/${seatEdit.fantasyTeamId}`)
+    .then(response => response.json())
+  }
+
+  const deleteSeat = (id: string | undefined) => {
+    fetch(`/deleteSeat/` + id)
+    .then(response => response.json())
+  }
+
   useEffect(() => {
     if (id !== "new") {
       findDriverById(id);
       findSeatsByDriverId(id);
+      findSeatByBothIds(seatEdit.fantasyTeamId, id);
     }
-  }, []);
+  });
 
   const createDriver = (driver: any) => {
     fetch(`/createDriver/${driver.name}/${driver.nationality}/${driver.value}/${driver.constructor_id}`)
@@ -85,6 +107,25 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.constructor_id}/>
+        <label>Add to or Delete from Team with following ID: </label>
+        <input className="form-control"
+               onChange={(e) =>
+                   setSeatEdit(seatEdit =>
+                       ({...seatEdit, fantasyTeamId: e.target.value}))}
+               value={
+                 // @ts-ignore
+                 seatEdit.fantasyTeamId}/>
+        <button className="btn btn-success"
+                onClick={() => createSeat(seatEdit)}>Add to Team
+        </button>
+        <button className="btn btn-danger"
+                onClick={() => {
+                  // @ts-ignore
+                  findSeatByBothIds(seatEdit.fantasyTeamId, driver.id);
+                  // @ts-ignore
+                  deleteSeat(tempSeat.id);
+                }}>Delete from Team
+        </button>
         <label>Linked Fantasy Teams:- </label>
         <ul className="list-group">
           {

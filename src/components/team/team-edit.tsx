@@ -5,7 +5,11 @@ export const TeamEditor: React.FC = () => {
   const {id} = useParams()
   const [team, setTeam] = useState({})
   const [seats, setSeats] = useState([])
-
+  const [seatEdit, setSeatEdit] = useState({
+    fantasyTeamId: id,
+    driverId: ''
+  })
+  const [tempSeat, setTempSeat] = useState({})
   const findTeamById = (id: string | undefined) =>
       fetch(`/findTeamById`, {
         method: 'POST',
@@ -21,12 +25,29 @@ export const TeamEditor: React.FC = () => {
     .then(seats => setSeats(seats))
   }
 
+  const findSeatByBothIds = (team_id: string | undefined, driver_id: string | undefined) => {
+    fetch(`/findSeatByBothIds/${team_id}/${driver_id}`)
+    .then(response => response.json())
+    .then(seat => setTempSeat(seat))
+  }
+
+  const createSeat = (seatEdit: any) => {
+    fetch(`/createSeat/${seatEdit.driverId}/${seatEdit.fantasyTeamId}`)
+    .then(response => response.json())
+  }
+
+  const deleteSeat = (id: string | undefined) => {
+    fetch(`/deleteSeat/` + id)
+    .then(response => response.json())
+  }
+
   useEffect(() => {
     if (id !== "new") {
       findTeamById(id);
       findSeatsByTeamId(id);
+      findSeatByBothIds(id, seatEdit.driverId);
     }
-  }, []);
+  });
 
   const createTeam = (team: any) => {
     fetch(`/createTeam/${team.name}/${team.budget}/${team.user}/${team.constructer}`)
@@ -85,6 +106,25 @@ export const TeamEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  team.constructer}/>
+        <label>Add or Delete Driver with following ID from this team: </label>
+        <input className="form-control"
+               onChange={(e) =>
+                   setSeatEdit(seatEdit =>
+                       ({...seatEdit, driverId: e.target.value}))}
+               value={
+                 // @ts-ignore
+                 seatEdit.driverId}/>
+        <button className="btn btn-success"
+                onClick={() => createSeat(seatEdit)}>Add Driver to this Team
+        </button>
+        <button className="btn btn-danger"
+                onClick={() => {
+                  // @ts-ignore
+                  findSeatByBothIds(team.id, seatEdit.driverId);
+                  // @ts-ignore
+                  deleteSeat(tempSeat.id);
+                }}>Delete Driver from this Team
+        </button>
         <label>Linked Drivers:- </label>
         <ul className="list-group">
           {
@@ -95,7 +135,7 @@ export const TeamEditor: React.FC = () => {
                         key={seat.id}>
                       <Link to={
                         // @ts-ignore
-                        `/teamEditor/${seat.driverId}`}>
+                        `/driverEditor/${seat.driverId}`}>
                         {// @ts-ignore
                             'Link to Driver ' + seat.driverId}
                       </Link>
