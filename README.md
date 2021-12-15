@@ -34,14 +34,14 @@ teams.
    any number of drivers.
 
 2. Constructor: A real or fictional F1 team that has one or multiple drivers under contract, 
-   and can be related to many fantasy teams. Shares a many-to-one relationship with constructors 
-   and a many-to-many relationship with fantasy teams. They have a name, color, nationality, 
+   and can be related to many fantasy teams. Shares a one-to-many relationship with drivers 
+   and a one-to-many relationship with fantasy teams. They have a name, color, nationality, 
    value, and any number of drivers.
 
 3. Driver: Athletes who are under contract by a constructor but have no restrictions as to which 
-or how many fantasy teams they can be a part of. Shares a one-to-many relationship with fantasy 
-   teams and drivers. They have a name, nationality, value, are part of only one constructor, 
-   and part of any number of fantasy teams.
+or how many fantasy teams they can be a part of. Shares a many-to-one relationship with 
+   constructors and many-to-many relationship with fantasy teams. They have a name, nationality, 
+   value, are part of only one constructor, and part of any number of fantasy teams.
 
 ## Team Member(s):
 
