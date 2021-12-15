@@ -74,7 +74,8 @@ export const DriverEditor: React.FC = () => {
         <label>Id</label>
         <input className="form-control" value={
           // @ts-ignore
-          driver.id}/><br/>
+          driver.id}/>
+        <br/>
         <label>Name</label>
         <input className="form-control"
                onChange={(e) =>
@@ -83,6 +84,7 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.name}/>
+        <br/>
         <label>Nationality</label>
         <input className="form-control"
                onChange={(e) =>
@@ -91,6 +93,7 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.nationality}/>
+        <br/>
         <label>Value</label>
         <input className="form-control"
                onChange={(e) =>
@@ -99,6 +102,7 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.value}/>
+        <br/>
         <label>Constructor ID</label>
         <input className="form-control"
                onChange={(e) =>
@@ -107,6 +111,7 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.constructor_id}/>
+        <br/>
         <label>Add to or Delete from Team with following ID: </label>
         <input className="form-control"
                onChange={(e) =>
@@ -115,6 +120,7 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  seatEdit.fantasyTeamId}/>
+        <br/>
         <button className="btn btn-success"
                 onClick={() => createSeat(seatEdit)}>Add to Team
         </button>
@@ -126,6 +132,8 @@ export const DriverEditor: React.FC = () => {
                   deleteSeat(tempSeat.id);
                 }}>Delete from Team
         </button>
+        <br/>
+        <br/>
         <label>Linked Fantasy Teams:- </label>
         <ul className="list-group">
           {

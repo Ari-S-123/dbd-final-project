@@ -52,7 +52,8 @@ export const ConstructorEditor: React.FC = () => {
         <label>Id</label>
         <input className="form-control" value={
           // @ts-ignore
-          constructor.id}/><br/>
+          constructor.id}/>
+        <br/>
         <label>Name</label>
         <input className="form-control"
                onChange={(e) =>
@@ -61,6 +62,7 @@ export const ConstructorEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  constructor.name}/>
+        <br/>
         <label>Color</label>
         <input className="form-control"
                onChange={(e) =>
@@ -69,6 +71,7 @@ export const ConstructorEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  constructor.color}/>
+        <br/>
         <label>Nationality</label>
         <input className="form-control"
                onChange={(e) =>
@@ -77,6 +80,7 @@ export const ConstructorEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  constructor.nationality}/>
+        <br/>
         <label>Value</label>
         <input className="form-control"
                onChange={(e) =>
@@ -85,6 +89,7 @@ export const ConstructorEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  constructor.value}/>
+        <br/>
         <label>Drivers:-</label>
         <ul className="list-group">
           {

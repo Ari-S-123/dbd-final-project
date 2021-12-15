@@ -53,7 +53,8 @@ export const UserEditor: React.FC = () => {
         <label>Id</label>
         <input className="form-control" value={
           // @ts-ignore
-          user.id}/><br/>
+          user.id}/>
+        <br/>
         <label>First Name</label>
         <input className="form-control"
                onChange={(e) =>
@@ -71,6 +72,7 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.lastName}/>
+        <br/>
         <label>Username</label>
         <input className="form-control"
                onChange={(e) =>
@@ -79,6 +81,7 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.username}/>
+        <br/>
         <label>Email</label>
         <input className="form-control"
                onChange={(e) =>
@@ -87,6 +90,7 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.email}/>
+        <br/>
         <label>Date Of Birth</label>
         <input className="form-control"
                onChange={(e) =>
@@ -95,6 +99,7 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.dateOfBirth}/>
+        <br/>
         <label>Teams:-</label>
         <ul className="list-group">
           {
