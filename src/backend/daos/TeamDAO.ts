@@ -53,7 +53,7 @@ export class TeamDAO {
 
   findTeamById = async (id: number): Promise<FantasyTeam | undefined> => {
     let team: FantasyTeam | undefined;
-    createConnection({
+    await createConnection({
       type: "mysql",
       host: host,
       port: port,

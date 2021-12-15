@@ -10,6 +10,7 @@ import {ConstructorList} from "./components/constructor/constructor-list";
 import {UserEditor} from "./components/user/user-edit";
 import {ConstructorEditor} from "./components/constructor/constructor-edit";
 import {DriverEditor} from "./components/driver/driver-edit";
+import {TeamEditor} from "./components/team/team-edit";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/userList" element={<UserList/>}/>
               <Route path="/userEditor/:id" element={<UserEditor/>}/>
               <Route path="/teamList" element={<TeamList/>}/>
+              <Route path="/teamEditor/:id" element={<TeamEditor/>}/>
               <Route path="/driverList" element={<DriverList/>}/>
               <Route path="/driverEditor/:id" element={<DriverEditor/>}/>
               <Route path="/constructorList" element={<ConstructorList/>}/>

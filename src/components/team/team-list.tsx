@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export const TeamList: React.FC = () => {
 
@@ -13,14 +14,19 @@ export const TeamList: React.FC = () => {
   return (
       <div>
         <h2>Teams</h2>
+        <a className="btn btn-primary" href="/teamEditor/new">Add New Team</a>
         <ul className="list-group">
           {
             teams.map(team =>
                 <li className="list-group-item"
                     // @ts-ignore
                     key={team.id}>
-                  {// @ts-ignore
-                    team.name}
+                  <Link to={
+                    // @ts-ignore
+                    `/teamEditor/${team.id}`}>
+                    {// @ts-ignore
+                      team.name}
+                  </Link>
                 </li>)
           }
         </ul>

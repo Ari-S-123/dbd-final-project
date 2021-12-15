@@ -5,6 +5,7 @@ import {ConstructorDAO} from "./daos/ConstructorDAO";
 import {User} from "./models/User";
 import {Constructor} from "./models/Constructor";
 import {Driver} from "./models/Driver";
+import {FantasyTeam} from "./models/FantasyTeam";
 
 
 const express = require('express')
@@ -118,6 +119,40 @@ app.get('/updateDriver/:id/:name/:nationality/:value/:constructor_id', async (re
 app.get('/deleteDriver/:id', async (req: any, res: any) => {
   const {id} = req.params;
   new DriverDAO().deleteDriver(id);
+  res.send()
+})
+
+app.post('/findTeamById', bodyParser.text(), async (req: any, res: any) => {
+  const id: number = Number(req.body)
+  const team = await new TeamDAO().findTeamById(id);
+  res.send(team)
+})
+
+app.get('/createTeam/:name/:budget/:user/:constructer', async (req: any, res: any) => {
+  const {name, budget, user, constructer} = req.params;
+  const team = new FantasyTeam();
+  team.name = name;
+  team.budget = budget;
+  team.user = user;
+  team.constructer = constructer;
+  new TeamDAO().createTeam(team);
+  res.send();
+})
+
+app.get('/updateTeam/:id/:name/:budget/:user/:constructer', async (req: any, res: any) => {
+  const {id, name, budget, user, constructer} = req.params;
+  const team = new FantasyTeam();
+  team.name = name;
+  team.budget = budget;
+  team.user = user;
+  team.constructer = constructer;
+  new TeamDAO().updateTeam(id, team);
+  res.send();
+})
+
+app.get('/deleteTeam/:id', async (req: any, res: any) => {
+  const {id} = req.params;
+  new TeamDAO().deleteTeam(id);
   res.send()
 })
 
