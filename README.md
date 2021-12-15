@@ -22,10 +22,10 @@ drivers or constructors that may also be fictional.
 
 # Domain Objects:-
 
-1. FantasyTeam: A fantasy team consisting of any number of drivers and a single constructor. This
+1. FantasyTeam: A fantasy team consisting of any number of drivers and a single constructor. 
 
-2. Constructor: A real or fictional F1 team that has 2 drivers under contract, can be related to 
-many fantasy teams.
+2. Constructor: A real or fictional F1 team that has one or multiple drivers under contract, 
+   and can be related to many fantasy teams.
 
 3. Driver: Athletes who are under contract by a constructor but have no restrictions as to which 
 or how many fantasy teams they can be a part of.

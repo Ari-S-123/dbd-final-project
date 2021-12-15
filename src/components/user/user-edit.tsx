@@ -10,7 +10,7 @@ export const UserEditor: React.FC = () => {
       fetch(`/findUserById`, {
         method: 'POST',
         body: id,
-        headers: {'content-type': 'application/json'}
+        headers: {'content-type': 'text/plain'}
       })
       .then(response => response.json())
       .then(user => setUser(user))
@@ -20,6 +20,24 @@ export const UserEditor: React.FC = () => {
       findUserById(id);
     }
   }, []);
+
+  const createUser = (user: any) => {
+    fetch(`/createUser/${user.firstName}/${user.lastName}/${user.username}/${user.email}/${user.dateOfBirth}`)
+    // eslint-disable-next-line no-restricted-globals
+    .then(() => history.back())
+  }
+
+  const updateUser = (id: string, user: any) => {
+    fetch(`/createUser/${id}/${user.firstName}/${user.lastName}/${user.username}/${user.email}/${user.dateOfBirth}`)
+    // eslint-disable-next-line no-restricted-globals
+    .then(() => history.back())
+  }
+
+  const deleteUser = (id: string) => {
+    fetch(`/deleteUser/${id}`)
+    // eslint-disable-next-line no-restricted-globals
+    .then(() => history.back())
+  }
 
   return (
       <div>
@@ -61,7 +79,14 @@ export const UserEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  user.email}/>
-
+        <label>Date Of Birth</label>
+        <input className="form-control"
+               onChange={(e) =>
+                   setUser(user =>
+                       ({...user, dateOfBirth: e.target.value}))}
+               value={
+                 // @ts-ignore
+                 user.dateOfBirth}/>
         <br/>
         <button className="btn btn-warning" onClick={() => {
           // eslint-disable-next-line no-restricted-globals
@@ -69,15 +94,19 @@ export const UserEditor: React.FC = () => {
         }}>
           Cancel
         </button>
-        {/*<button className="btn btn-danger" onClick={() => deleteUser(user.id)}>*/}
-        {/*  Delete*/}
-        {/*</button>*/}
-        {/*<button className="btn btn-primary"*/}
-        {/*        onClick={() => updateUser(user.id, user)}>Save*/}
-        {/*</button>*/}
-        {/*<button className="btn btn-success"*/}
-        {/*        onClick={() => createUser(user)}>Create*/}
-        {/*</button>*/}
+        <button className="btn btn-danger" onClick={() => deleteUser(
+            // @ts-ignore
+            user.id)}>
+          Delete
+        </button>
+        <button className="btn btn-primary"
+                onClick={() => updateUser(
+                    // @ts-ignore
+                    user.id, user)}>Save
+        </button>
+        <button className="btn btn-success"
+                onClick={() => createUser(user)}>Create
+        </button>
       </div>
   );
 }
