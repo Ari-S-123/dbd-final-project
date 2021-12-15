@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 export const DriverEditor: React.FC = () => {
   const {id} = useParams()
   const [driver, setDriver] = useState({})
-
+  const [seats, setSeats] = useState([])
 
   const findDriverById = (id: string | undefined) =>
       fetch(`/findDriverById`, {
@@ -15,9 +15,16 @@ export const DriverEditor: React.FC = () => {
       .then(response => response.json())
       .then(driver => setDriver(driver))
 
+  const findSeatsByDriverId = (id: string | undefined) => {
+    fetch('/findSeatsByDriverId/' + id)
+    .then(response => response.json())
+    .then(seats => setSeats(seats))
+  }
+
   useEffect(() => {
     if (id !== "new") {
       findDriverById(id);
+      findSeatsByDriverId(id);
     }
   }, []);
 
@@ -78,6 +85,24 @@ export const DriverEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  driver.constructor_id}/>
+        <label>Linked Fantasy Teams:- </label>
+        <ul className="list-group">
+          {
+            seats.map(seat =>
+                (
+                    <li className="list-group-item"
+                        // @ts-ignore
+                        key={seat.id}>
+                      <Link to={
+                        // @ts-ignore
+                        `/teamEditor/${seat.fantasyTeamId}`}>
+                        {// @ts-ignore
+                            'Link to Team ' + seat.fantasyTeamId}
+                      </Link>
+                    </li>
+                ))
+          }
+        </ul>
         <br/>
         <button className="btn btn-warning" onClick={() => {
           // eslint-disable-next-line no-restricted-globals
