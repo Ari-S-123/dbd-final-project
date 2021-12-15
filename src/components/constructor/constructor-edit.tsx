@@ -14,6 +14,14 @@ export const ConstructorEditor: React.FC = () => {
     setDrivers(drivers);
   });
 
+  const [teams, setTeams] = useState([]);
+
+  const teamsPromise = fetch('/findTeamsByConstructorId/' + id)
+  .then((response) => response.json())
+  .then((teams) => {
+    setTeams(teams);
+  });
+
   const findConstructorById = (id: string | undefined) =>
       fetch(`/findConstructorById`, {
         method: 'POST',
@@ -103,6 +111,23 @@ export const ConstructorEditor: React.FC = () => {
                     `/driverEditor/${driver.id}`}>
                     {// @ts-ignore
                       driver.name}
+                  </Link>
+                </li>)
+          }
+        </ul>
+        <br/>
+        <label>Linked Fantasy Teams:-</label>
+        <ul className="list-group">
+          {
+            teams.map(team =>
+                <li className="list-group-item"
+                    // @ts-ignore
+                    key={team.id}>
+                  <Link to={
+                    // @ts-ignore
+                    `/teamEditor/${team.id}`}>
+                    {// @ts-ignore
+                      team.name}
                   </Link>
                 </li>)
           }

@@ -102,6 +102,12 @@ app.get('/findDriversByConstructorId/:constructorId', async (req: any, res: any)
   res.send(drivers)
 })
 
+app.get('/findTeamsByConstructorId/:constructorId', async (req: any, res: any) => {
+  const {constructorId} = req.params;
+  const teams = await new TeamDAO().findTeamsByConstructorId(constructorId);
+  res.send(teams)
+})
+
 app.get('/createDriver/:name/:nationality/:value/:constructor_id', async (req: any, res: any) => {
   const {name, nationality, value, constructor_id} = req.params;
   const driver = new Driver();
