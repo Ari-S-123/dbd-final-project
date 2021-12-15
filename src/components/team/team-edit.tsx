@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import styles from './team-edit.module.css';
 
 export const TeamEditor: React.FC = () => {
   const {id} = useParams()
@@ -45,9 +46,14 @@ export const TeamEditor: React.FC = () => {
     if (id !== "new") {
       findTeamById(id);
       findSeatsByTeamId(id);
-      findSeatByBothIds(id, seatEdit.driverId);
     }
   }, []);
+
+  useEffect(() => {
+    if (id !== "new") {
+      findSeatByBothIds(id, seatEdit.driverId);
+    }
+  });
 
   const createTeam = (team: any) => {
     fetch(`/createTeam/${team.name}/${team.budget}/${team.user}/${team.constructer}`)
@@ -68,14 +74,14 @@ export const TeamEditor: React.FC = () => {
   }
 
   return (
-      <div>
+      <div className={styles.teamEdit}>
         <h2>Team Editor</h2>
-        <label>Id</label>
+        <label>Id:</label>
         <input className="form-control" value={
           // @ts-ignore
           team.id}/>
         <br/>
-        <label>Name</label>
+        <label>Name:</label>
         <input className="form-control"
                onChange={(e) =>
                    setTeam(team =>
@@ -84,7 +90,7 @@ export const TeamEditor: React.FC = () => {
                  // @ts-ignore
                  team.name}/>
         <br/>
-        <label>Budget</label>
+        <label>Budget:</label>
         <input className="form-control"
                onChange={(e) =>
                    setTeam(team =>
@@ -93,7 +99,7 @@ export const TeamEditor: React.FC = () => {
                  // @ts-ignore
                  team.budget}/>
         <br/>
-        <label>User ID</label>
+        <label>User ID:</label>
         <input className="form-control"
                onChange={(e) =>
                    setTeam(team =>
@@ -102,7 +108,7 @@ export const TeamEditor: React.FC = () => {
                  // @ts-ignore
                  team.user}/>
         <br/>
-        <label>Constructor ID</label>
+        <label>Constructor ID:</label>
         <input className="form-control"
                onChange={(e) =>
                    setTeam(team =>
@@ -111,7 +117,7 @@ export const TeamEditor: React.FC = () => {
                  // @ts-ignore
                  team.constructer}/>
         <br/>
-        <label>Add or Delete Driver with following ID from this team: </label>
+        <label>Add or Delete Driver with following ID from this team:</label>
         <input className="form-control"
                onChange={(e) =>
                    setSeatEdit(seatEdit =>
@@ -133,7 +139,7 @@ export const TeamEditor: React.FC = () => {
         </button>
         <br/>
         <br/>
-        <label>Linked Drivers:- </label>
+        <label>Linked Drivers:-</label>
         <ul className="list-group">
           {
             seats.map(seat =>

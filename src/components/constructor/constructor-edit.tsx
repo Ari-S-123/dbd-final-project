@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import styles from './constructor-edit.module.css';
 
 export const ConstructorEditor: React.FC = () => {
   const {id} = useParams()
@@ -47,14 +48,14 @@ export const ConstructorEditor: React.FC = () => {
   }
 
   return (
-      <div>
+      <div className={styles.constructorEdit}>
         <h2>Constructor Editor</h2>
-        <label>Id</label>
+        <label>Id:</label>
         <input className="form-control" value={
           // @ts-ignore
           constructor.id}/>
         <br/>
-        <label>Name</label>
+        <label>Name:</label>
         <input className="form-control"
                onChange={(e) =>
                    setConstructor(constructor =>
@@ -63,7 +64,7 @@ export const ConstructorEditor: React.FC = () => {
                  // @ts-ignore
                  constructor.name}/>
         <br/>
-        <label>Color</label>
+        <label>Color:</label>
         <input className="form-control"
                onChange={(e) =>
                    setConstructor(constructor =>
@@ -72,7 +73,7 @@ export const ConstructorEditor: React.FC = () => {
                  // @ts-ignore
                  constructor.color}/>
         <br/>
-        <label>Nationality</label>
+        <label>Nationality:</label>
         <input className="form-control"
                onChange={(e) =>
                    setConstructor(constructor =>
@@ -81,7 +82,7 @@ export const ConstructorEditor: React.FC = () => {
                  // @ts-ignore
                  constructor.nationality}/>
         <br/>
-        <label>Value</label>
+        <label>Value:</label>
         <input className="form-control"
                onChange={(e) =>
                    setConstructor(constructor =>
@@ -90,7 +91,7 @@ export const ConstructorEditor: React.FC = () => {
                  // @ts-ignore
                  constructor.value}/>
         <br/>
-        <label>Drivers:-</label>
+        <label>Linked Drivers:-</label>
         <ul className="list-group">
           {
             drivers.map(driver =>

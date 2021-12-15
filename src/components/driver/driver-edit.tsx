@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import styles from './driver-edit.module.css';
 
 export const DriverEditor: React.FC = () => {
   const {id} = useParams()
@@ -46,9 +47,14 @@ export const DriverEditor: React.FC = () => {
     if (id !== "new") {
       findDriverById(id);
       findSeatsByDriverId(id);
-      findSeatByBothIds(seatEdit.fantasyTeamId, id);
     }
   }, []);
+
+  useEffect(() => {
+    if (id !== "new") {
+      findSeatByBothIds(seatEdit.fantasyTeamId, id);
+    }
+  });
 
   const createDriver = (driver: any) => {
     fetch(`/createDriver/${driver.name}/${driver.nationality}/${driver.value}/${driver.constructor_id}`)
@@ -69,14 +75,14 @@ export const DriverEditor: React.FC = () => {
   }
 
   return (
-      <div>
+      <div className={styles.driverEdit}>
         <h2>Driver Editor</h2>
-        <label>Id</label>
+        <label>Id:</label>
         <input className="form-control" value={
           // @ts-ignore
           driver.id}/>
         <br/>
-        <label>Name</label>
+        <label>Name:</label>
         <input className="form-control"
                onChange={(e) =>
                    setDriver(driver =>
@@ -85,7 +91,7 @@ export const DriverEditor: React.FC = () => {
                  // @ts-ignore
                  driver.name}/>
         <br/>
-        <label>Nationality</label>
+        <label>Nationality:</label>
         <input className="form-control"
                onChange={(e) =>
                    setDriver(driver =>
@@ -94,7 +100,7 @@ export const DriverEditor: React.FC = () => {
                  // @ts-ignore
                  driver.nationality}/>
         <br/>
-        <label>Value</label>
+        <label>Value:</label>
         <input className="form-control"
                onChange={(e) =>
                    setDriver(driver =>
@@ -103,7 +109,7 @@ export const DriverEditor: React.FC = () => {
                  // @ts-ignore
                  driver.value}/>
         <br/>
-        <label>Constructor ID</label>
+        <label>Constructor ID:</label>
         <input className="form-control"
                onChange={(e) =>
                    setDriver(driver =>
@@ -112,7 +118,7 @@ export const DriverEditor: React.FC = () => {
                  // @ts-ignore
                  driver.constructor_id}/>
         <br/>
-        <label>Add to or Delete from Team with following ID: </label>
+        <label>Add to or Delete from Team with following ID:</label>
         <input className="form-control"
                onChange={(e) =>
                    setSeatEdit(seatEdit =>
@@ -134,7 +140,7 @@ export const DriverEditor: React.FC = () => {
         </button>
         <br/>
         <br/>
-        <label>Linked Fantasy Teams:- </label>
+        <label>Linked Fantasy Teams:-</label>
         <ul className="list-group">
           {
             seats.map(seat =>

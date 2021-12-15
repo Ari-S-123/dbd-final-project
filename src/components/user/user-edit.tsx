@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import styles from './user-edit.module.css';
 
 export const UserEditor: React.FC = () => {
   const {id} = useParams()
@@ -48,14 +49,14 @@ export const UserEditor: React.FC = () => {
   }
 
   return (
-      <div>
+      <div className={styles.userEdit}>
         <h2>User Editor</h2>
-        <label>Id</label>
+        <label>Id:</label>
         <input className="form-control" value={
           // @ts-ignore
           user.id}/>
         <br/>
-        <label>First Name</label>
+        <label>First Name:</label>
         <input className="form-control"
                onChange={(e) =>
                    setUser(user =>
@@ -64,7 +65,7 @@ export const UserEditor: React.FC = () => {
                  // @ts-ignore
                  user.firstName}/>
         <br/>
-        <label>Last Name</label>
+        <label>Last Name:</label>
         <input className="form-control"
                onChange={(e) =>
                    setUser(user =>
@@ -73,7 +74,7 @@ export const UserEditor: React.FC = () => {
                  // @ts-ignore
                  user.lastName}/>
         <br/>
-        <label>Username</label>
+        <label>Username:</label>
         <input className="form-control"
                onChange={(e) =>
                    setUser(user =>
@@ -82,7 +83,7 @@ export const UserEditor: React.FC = () => {
                  // @ts-ignore
                  user.username}/>
         <br/>
-        <label>Email</label>
+        <label>Email:</label>
         <input className="form-control"
                onChange={(e) =>
                    setUser(user =>
@@ -91,7 +92,7 @@ export const UserEditor: React.FC = () => {
                  // @ts-ignore
                  user.email}/>
         <br/>
-        <label>Date Of Birth</label>
+        <label>Date Of Birth:</label>
         <input className="form-control"
                onChange={(e) =>
                    setUser(user =>
@@ -100,7 +101,7 @@ export const UserEditor: React.FC = () => {
                  // @ts-ignore
                  user.dateOfBirth}/>
         <br/>
-        <label>Teams:-</label>
+        <label>Linked Teams:-</label>
         <ul className="list-group">
           {
             teams.map(team =>
