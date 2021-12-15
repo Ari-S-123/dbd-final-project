@@ -85,7 +85,6 @@ export class UserDAO {
     }).then(async connection => {
       const userRepository = connection.getRepository(User);
       let user: User | undefined = await userRepository.findOne(id);
-      user!.id = userUpdate.id;
       user!.firstName = userUpdate.firstName;
       user!.lastName = userUpdate.lastName;
       user!.username = userUpdate.username;

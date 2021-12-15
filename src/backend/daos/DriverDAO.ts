@@ -85,7 +85,6 @@ export class DriverDAO {
     }).then(async connection => {
       const driverRepository = connection.getRepository(Driver);
       let driver: Driver | undefined = await driverRepository.findOne(id);
-      driver!.id = driverUpdate.id;
       driver!.name = driverUpdate.name;
       driver!.nationality = driverUpdate.nationality;
       driver!.value = driverUpdate.value;

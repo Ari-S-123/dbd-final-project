@@ -28,7 +28,7 @@ export const UserEditor: React.FC = () => {
   }
 
   const updateUser = (id: string, user: any) => {
-    fetch(`/createUser/${id}/${user.firstName}/${user.lastName}/${user.username}/${user.email}/${user.dateOfBirth}`)
+    fetch(`/updateUser/${id}/${user.firstName}/${user.lastName}/${user.username}/${user.email}/${user.dateOfBirth}`)
     // eslint-disable-next-line no-restricted-globals
     .then(() => history.back())
   }

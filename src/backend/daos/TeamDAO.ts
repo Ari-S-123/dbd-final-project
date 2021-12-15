@@ -85,7 +85,6 @@ export class TeamDAO {
     }).then(async connection => {
       const teamRepository = connection.getRepository(FantasyTeam);
       let team: FantasyTeam | undefined = await teamRepository.findOne(id);
-      team!.id = teamUpdate.id;
       team!.name = teamUpdate.name;
       team!.budget = teamUpdate.budget;
       team!.user = teamUpdate.user;

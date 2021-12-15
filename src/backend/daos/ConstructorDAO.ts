@@ -85,7 +85,6 @@ export class ConstructorDAO {
     }).then(async connection => {
       const constructorRepository = connection.getRepository(Constructor);
       let constructor: Constructor | undefined = await constructorRepository.findOne(id);
-      constructor!.id = constructorUpdate.id;
       constructor!.name = constructorUpdate.name;
       constructor!.color = constructorUpdate.color;
       constructor!.nationality = constructorUpdate.nationality;
