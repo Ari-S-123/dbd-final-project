@@ -8,11 +8,13 @@ number of 5.
 
 # Solution Statement:
 
-To solve this problem, I created a webapp that lets users create brand new drivers and 
+To solve this problem, I created a webapp that lets users create brand-new drivers and 
 constructors from scratch, and add them to their fantasy teams which are stored long-term in a 
-MySQL database. This application is meant to serve as a base on top of which an entirely new 
-fantasy sports website could be built, one with possible to simulate seasons of fantasy f1 
-detached from the real-life series. 
+MySQL database. TypeORM is the ORM Solution used for the project. The backend of this webapp is 
+built using Node.js, Express, and Typescript. The frontend of this webapp is built using React 
+and Typescript. This application is meant to serve as a base on top of which an entirely new 
+fantasy sports website could be built, one with possible functionality to simulate seasons of 
+fantasy f1 detached from the real-life series. 
 
 # User:
 
