@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export const DriverList: React.FC = () => {
 
@@ -13,14 +14,19 @@ export const DriverList: React.FC = () => {
   return (
       <div>
         <h2>Drivers</h2>
+        <a className="btn btn-primary" href="/driverEditor/new">Add New Driver</a>
         <ul className="list-group">
           {
             drivers.map(driver =>
                 <li className="list-group-item"
                     // @ts-ignore
                     key={driver.id}>
-                  {// @ts-ignore
-                    driver.name}
+                  <Link to={
+                    // @ts-ignore
+                    `/driverEditor/${driver.id}`}>
+                    {// @ts-ignore
+                      driver.name}
+                  </Link>
                 </li>)
           }
         </ul>

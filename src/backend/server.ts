@@ -4,6 +4,7 @@ import {DriverDAO} from "./daos/DriverDAO";
 import {ConstructorDAO} from "./daos/ConstructorDAO";
 import {User} from "./models/User";
 import {Constructor} from "./models/Constructor";
+import {Driver} from "./models/Driver";
 
 
 const express = require('express')
@@ -69,7 +70,7 @@ app.get('/createConstructor/:name/:color/:nationality/:value', async (req: any, 
   res.send();
 })
 
-app.get('/updateConstructor/:id/:name/:color/:nationality/:value/', async (req: any, res: any) => {
+app.get('/updateConstructor/:id/:name/:color/:nationality/:value', async (req: any, res: any) => {
   const {id, name, color, nationality, value} = req.params;
   const constructor = new Constructor();
   constructor.name = name;
@@ -83,6 +84,40 @@ app.get('/updateConstructor/:id/:name/:color/:nationality/:value/', async (req: 
 app.get('/deleteConstructor/:id', async (req: any, res: any) => {
   const {id} = req.params;
   new ConstructorDAO().deleteConstructor(id);
+  res.send()
+})
+
+app.post('/findDriverById', bodyParser.text(), async (req: any, res: any) => {
+  const id: number = Number(req.body)
+  const driver = await new DriverDAO().findDriverById(id);
+  res.send(driver)
+})
+
+app.get('/createDriver/:name/:nationality/:value/:constructor_id', async (req: any, res: any) => {
+  const {name, nationality, value, constructor_id} = req.params;
+  const driver = new Driver();
+  driver.name = name;
+  driver.nationality = nationality;
+  driver.value = value;
+  driver.constructor_id = constructor_id;
+  new DriverDAO().createDriver(driver);
+  res.send();
+})
+
+app.get('/updateDriver/:id/:name/:nationality/:value/:constructor_id', async (req: any, res: any) => {
+  const {id, name, nationality, value, constructor_id} = req.params;
+  const driver = new Driver();
+  driver.name = name;
+  driver.nationality = nationality;
+  driver.value = value;
+  driver.constructor_id = constructor_id;
+  new DriverDAO().updateDriver(id, driver);
+  res.send();
+})
+
+app.get('/deleteDriver/:id', async (req: any, res: any) => {
+  const {id} = req.params;
+  new DriverDAO().deleteDriver(id);
   res.send()
 })
 

@@ -9,6 +9,7 @@ import {DriverList} from "./components/driver/driver-list";
 import {ConstructorList} from "./components/constructor/constructor-list";
 import {UserEditor} from "./components/user/user-edit";
 import {ConstructorEditor} from "./components/constructor/constructor-edit";
+import {DriverEditor} from "./components/driver/driver-edit";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
                     height="20"
                     className="d-inline-block align-top"
                 />{' '}
-                Database Design Final Project
+                Formula 1 Fantasy Team Manager
               </Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="/userList">User List</Nav.Link>
@@ -38,6 +39,7 @@ function App() {
               <Route path="/userEditor/:id" element={<UserEditor/>}/>
               <Route path="/teamList" element={<TeamList/>}/>
               <Route path="/driverList" element={<DriverList/>}/>
+              <Route path="/driverEditor/:id" element={<DriverEditor/>}/>
               <Route path="/constructorList" element={<ConstructorList/>}/>
               <Route path="/constructorEditor/:id" element={<ConstructorEditor/>}/>
             </Routes>
