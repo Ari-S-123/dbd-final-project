@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export const UserList: React.FC = () => {
 
@@ -19,8 +20,12 @@ export const UserList: React.FC = () => {
                 <li className="list-group-item"
                     // @ts-ignore
                     key={user.id}>
-                  {// @ts-ignore
-                    user.firstName + " " + user.lastName}
+                  <Link to={
+                    // @ts-ignore
+                    `/userEditor/${user.id}`}>
+                    {// @ts-ignore
+                        user.firstName + " " + user.lastName}
+                  </Link>
                 </li>)
           }
         </ul>

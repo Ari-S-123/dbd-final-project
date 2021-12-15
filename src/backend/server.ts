@@ -13,6 +13,12 @@ app.get('/findAllUsers', async (req: any, res: any) => {
   res.send(allUsers)
 })
 
+app.post('/findUserById', async (req: any, res: any) => {
+  const id: number = Number(req.body)
+  const user = await new UserDAO().findUserById(id);
+  res.send(user)
+})
+
 app.get('/findAllTeams', async (req: any, res: any) => {
   const allTeams = await new TeamDAO().findAllTeams();
   res.send(allTeams)
