@@ -94,6 +94,12 @@ app.post('/findDriverById', bodyParser.text(), async (req: any, res: any) => {
   res.send(driver)
 })
 
+app.get('/findDriversByConstructorId/:constructorId', async (req: any, res: any) => {
+  const {constructorId} = req.params;
+  const drivers = await new DriverDAO().findAllDriversByConstructorID(constructorId);
+  res.send(drivers)
+})
+
 app.get('/createDriver/:name/:nationality/:value/:constructor_id', async (req: any, res: any) => {
   const {name, nationality, value, constructor_id} = req.params;
   const driver = new Driver();

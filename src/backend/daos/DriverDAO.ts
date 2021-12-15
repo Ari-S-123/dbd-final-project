@@ -71,6 +71,26 @@ export class DriverDAO {
     return driver;
   }
 
+  findAllDriversByConstructorID = async (id: number): Promise<Driver[]> => {
+    let drivers: Driver[] = [];
+    await createConnection({
+      type: "mysql",
+      host: host,
+      port: port,
+      database: database_name,
+      username: username,
+      password: password,
+      logging: logging,
+      synchronize: synchronize,
+      entities: entities
+    }).then(async connection => {
+      const driverRepository = connection.getRepository(Driver);
+      drivers = await driverRepository.find({constructor_id: id});
+      await connection.close();
+    }).catch(error => console.log(error));
+    return drivers;
+  }
+
   updateDriver = (id: number, driverUpdate: Driver) => {
     createConnection({
       type: "mysql",

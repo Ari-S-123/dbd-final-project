@@ -1,10 +1,17 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 export const ConstructorEditor: React.FC = () => {
   const {id} = useParams()
   const [constructor, setConstructor] = useState({})
 
+  const [drivers, setDrivers] = useState([]);
+
+  const driversPromise = fetch('/findDriversByConstructorId/' + id)
+  .then((response) => response.json())
+  .then((drivers) => {
+    setDrivers(drivers);
+  });
 
   const findConstructorById = (id: string | undefined) =>
       fetch(`/findConstructorById`, {
@@ -78,6 +85,22 @@ export const ConstructorEditor: React.FC = () => {
                value={
                  // @ts-ignore
                  constructor.value}/>
+        <label>Drivers:-</label>
+        <ul className="list-group">
+          {
+            drivers.map(driver =>
+                <li className="list-group-item"
+                    // @ts-ignore
+                    key={driver.id}>
+                  <Link to={
+                    // @ts-ignore
+                    `/driverEditor/${driver.id}`}>
+                    {// @ts-ignore
+                      driver.name}
+                  </Link>
+                </li>)
+          }
+        </ul>
         <br/>
         <button className="btn btn-warning" onClick={() => {
           // eslint-disable-next-line no-restricted-globals
