@@ -49,16 +49,18 @@ Aritra Saharay
 
 ## How to run the app:-
 
-1. Have node and npm installed.
+1. Import the database into MySQL from `Final Project Database Implementation.zip`
 
-2. `npm install ts-node` globally.
+2. Have node and npm installed.
 
-3. Install dependencies with `npm install`.
+3. `npm install ts-node` globally.
 
-4. Make sure "module" in `tsconfig.json` is set to `"commonjs"` before starting server.
+4. Install dependencies with `npm install`.
 
-5. Start the server with `ts-node src/backend/server.ts` and keep it running.
+5. Make sure "module" in `tsconfig.json` is set to `"commonjs"` before starting server.
 
-6. In a separate console, start the React App with `npm start`.
+6. Start the server with `ts-node src/backend/server.ts` and keep it running.
+
+7. In a separate console, start the React App with `npm start`.
 
 
