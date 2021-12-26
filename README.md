@@ -51,16 +51,18 @@ Aritra Saharay
 
 1. Import the database into MySQL from `Final Project Database Implementation.zip`
 
-2. Have node and npm installed.
+2. Make sure `database-settings.ts` is properly updated with the appropriate username, password, port, etc.
 
-3. `npm install ts-node` globally.
+3. Have node and npm installed.
 
-4. Install dependencies with `npm install`.
+4. `npm install ts-node` globally.
 
-5. Make sure "module" in `tsconfig.json` is set to `"commonjs"` before starting server.
+5. Install dependencies with `npm install`.
 
-6. Start the server with `ts-node src/backend/server.ts` and keep it running.
+6. Make sure "module" in `tsconfig.json` is set to `"commonjs"` before starting server.
 
-7. In a separate console, start the React App with `npm start`.
+7. Start the server with `ts-node src/backend/server.ts` and keep it running.
+
+8. In a separate console, start the React App with `npm start`.
 
 
